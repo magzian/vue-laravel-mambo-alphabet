@@ -12,7 +12,7 @@
           :visible-once="{ y: 0, opacity: 1, transition: { duration: 800 } }"
           class="text-4xl md:text-5xl font-bold mb-8 text-gray-800"
         >
-          About Mambo Alphabet
+          About Our Printing Services
         </h3>
         <p 
           v-motion
@@ -20,9 +20,7 @@
           :visible-once="{ y: 0, opacity: 1, transition: { duration: 800, delay: 200 } }"
           class="text-lg text-gray-600 mb-12 leading-relaxed"
         >
-          We specialize in creating engaging, educational books that make learning the alphabet an adventure. 
-          Our carefully crafted collection helps children develop essential reading skills while having fun with 
-          colorful illustrations and interactive storytelling.
+          We bring your ideas to life with high-quality printing for shirts, children’s coloring books, and business banners. Our team combines creativity, precision, and fast service to deliver products that make an impact—whether for fun, learning, or promotion.
         </p>
         <div class="grid md:grid-cols-3 gap-8">
           <div 
@@ -48,7 +46,7 @@ import { ref } from 'vue'
 
 const features = ref([
   {
-    icon: '🎨',
+    icon: '🎨', 
     title: 'Creative Design',
     description: 'Beautifully illustrated books that capture children\'s imagination and make learning visually engaging.'
   },

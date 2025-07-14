@@ -15,7 +15,7 @@
     <!-- Books Section -->
     <BooksSection />
 
-    <!-- Contact Section -->
+    <!-- Contact Section --> 
     <ContactSection />
 
     <!-- Footer -->
@@ -25,6 +25,7 @@
 
 <script setup>
 import { onMounted } from 'vue'
+import { motion } from 'motion-v'
 import FloatingShapes from './components/FloatingShapes.vue'
 import Header from './components/Header.vue'
 import HeroSection from './components/HeroSection.vue'
@@ -32,6 +33,7 @@ import AboutSection from './components/AboutSection.vue'
 import BooksSection from './components/BooksSection.vue'
 import ContactSection from './components/ContactSection.vue'
 import Footer from './components/Footer.vue'
+
 
 onMounted(() => {
   // Add smooth scrolling for navigation links

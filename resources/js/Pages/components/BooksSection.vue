@@ -7,86 +7,112 @@
         :visible-once="{ y: 0, opacity: 1, transition: { duration: 800 } }"
         class="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-800"
       >
-        Our Book Collection
+        Our Printing Products & Services
       </h3>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        <div 
-          v-for="(book, index) in books"
-          :key="index"
-          v-motion
-          :initial="{ y: 50, opacity: 0, scale: 0.9 }"
-          :visible-once="{ y: 0, opacity: 1, scale: 1, transition: { duration: 600, delay: index * 150 } }"
-          class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105"
+      <div class="relative max-w-6xl mx-auto">
+        <div class="flex items-center justify-between mb-6">
+          <button @click="prev" :disabled="carouselStart === 0" class="px-4 py-2 rounded-full bg-purple-100 text-purple-600 font-bold shadow hover:bg-purple-200 disabled:opacity-50">&#8592; Prev</button>
+          <button @click="next" :disabled="carouselStart + 1 >= books.length" class="px-4 py-2 rounded-full bg-purple-100 text-purple-600 font-bold shadow hover:bg-purple-200 disabled:opacity-50">Next &#8594;</button>
+        </div>
+        <motion.div
+          :key="carouselStart"
+          :initial="{ x: direction === 1 ? 300 : -300, opacity: 0 }"
+          :animate="{ x: 0, opacity: 1 }"
+          :transition="{ duration: 0.5, ease: 'easeInOut' }"
+          class="flex flex-row justify-center items-center gap-8"
         >
-          <div class="h-48 bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center text-6xl">
-            {{ book.emoji }}
-          </div>
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2 text-gray-800">{{ book.title }}</h4>
-            <p class="text-gray-600 mb-4">{{ book.description }}</p>
-            <div class="flex justify-between items-center">
-              <span class="text-2xl font-bold text-purple-600">${{ book.price }}</span>
-              <button 
-                @click="addToCart(book)"
-                class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300"
-              >
-                Add to Cart
-              </button>
+          <div 
+            v-for="(book, index) in visibleBooks"
+            :key="book.id"
+            class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105"
+            style="min-width:320px;max-width:400px;width:100%"
+          >
+            <div class="h-48 bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center text-6xl">
+              {{ book.emoji }}
+            </div>
+            <div class="p-6">
+              <h4 class="text-xl font-semibold mb-2 text-gray-800">{{ book.title }}</h4>
+              <p class="text-gray-600 mb-4">{{ book.description }}</p>
+              <div class="flex justify-between items-center">
+                <span class="text-2xl font-bold text-purple-600">${{ book.price }}</span>
+                <button 
+                  @click="addToCart(book)"
+                  class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300"
+                >
+                  Add to Cart
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { motion } from 'motion-v'
 
 const books = ref([
   {
     id: 1,
-    title: 'ABC Adventure',
-    description: 'Join our characters on an exciting journey through the alphabet with fun activities and colorful illustrations.',
-    price: '12.99',
-    emoji: '🔤'
+    title: 'Custom Shirt Printing',
+    description: 'High-quality t-shirt printing for events, businesses, and personal use. Choose your design and color!',
+    price: 'From $9.99',
+    emoji: '�'
   },
   {
     id: 2,
-    title: 'Letter Land',
-    description: 'Explore a magical world where each letter has its own personality and story to tell.',
-    price: '14.99',
-    emoji: '🏰'
+    title: 'Children’s Coloring Books',
+    description: 'Fun and educational coloring books for kids. Vibrant pages, creative themes, and bulk discounts.',
+    price: 'From $5.99',
+    emoji: '📚'
   },
   {
     id: 3,
-    title: 'Phonics Fun',
-    description: 'Learn letter sounds through interactive games and memorable rhymes that stick.',
-    price: '13.99',
-    emoji: '🎵'
+    title: 'Business Banners',
+    description: 'Durable, eye-catching banners for promotions, events, and storefronts. Custom sizes available.',
+    price: 'From $19.99',
+    emoji: '🖼️'
   },
   {
     id: 4,
-    title: 'Writing Wonders',
-    description: 'Practice letter formation with guided exercises and fun tracing activities.',
-    price: '11.99',
-    emoji: '✍️'
+    title: 'Personalized Mugs',
+    description: 'Print your logo, photo, or message on high-quality mugs. Perfect for gifts and branding.',
+    price: 'From $7.99',
+    emoji: '☕'
   },
   {
     id: 5,
-    title: 'Alphabet Animals',
-    description: 'Meet adorable animals for each letter while learning the alphabet in a fun way.',
-    price: '15.99',
-    emoji: '🦁'
+    title: 'Stickers & Decals',
+    description: 'Custom stickers and decals for kids, businesses, and events. Vibrant colors and durable material.',
+    price: 'From $2.99',
+    emoji: '🏷️'
   },
   {
     id: 6,
-    title: 'Story Starters',
-    description: 'Build vocabulary and reading skills with engaging short stories for each letter.',
-    price: '16.99',
-    emoji: '📖'
+    title: 'Flyers & Brochures',
+    description: 'Professional flyers and brochures for marketing and education. Fast turnaround and great prices.',
+    price: 'From $14.99',
+    emoji: '�'
   }
-])
+]) 
+
+const carouselStart = ref(0)
+const visibleBooks = computed(() => books.value.slice(carouselStart.value, carouselStart.value + 3))
+
+function next() {
+  if (carouselStart.value + 3 < books.value.length) {
+    carouselStart.value++
+  }
+}
+
+function prev() {
+  if (carouselStart.value > 0) {
+    carouselStart.value--
+  }
+}
 
 const addToCart = (book) => {
   // Emit event to parent or handle cart logic

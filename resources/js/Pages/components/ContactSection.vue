@@ -11,7 +11,7 @@
           :visible-once="{ y: 0, opacity: 1, transition: { duration: 800 } }"
           class="text-4xl md:text-5xl font-bold text-center mb-16"
         >
-          Get in Touch
+          Request a Quote or Contact Us
         </h3>
         <div class="grid md:grid-cols-2 gap-12">
           <div 
@@ -23,15 +23,15 @@
             <div class="space-y-4">
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">📧</div>
-                <span>hello@mamboalphabet.com</span>
+                <span>hello@printworks.com</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">📞</div>
-                <span>+1 (555) 123-4567</span>
+                <span>+1 (555) 987-6543</span>
               </div>
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">📍</div>
-                <span>123 Learning Street, Education City</span>
+                <span>456 Print Avenue, Business City</span>
               </div>
             </div>
           </div>
@@ -105,4 +105,4 @@ const submitForm = async () => {
   
   alert('Message sent successfully!')
 }
-</script>
+</script> 
