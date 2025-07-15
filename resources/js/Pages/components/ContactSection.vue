@@ -43,21 +43,21 @@
             class="space-y-4"
           >
             <input 
-              v-model="form.name"
+              v-model="name"
               type="text" 
               placeholder="Your Name" 
               required
               class="w-full px-4 py-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
             >
             <input 
-              v-model="form.email"
+              v-model="email"
               type="email" 
               placeholder="Your Email" 
               required
               class="w-full px-4 py-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white/50"
             >
             <textarea 
-              v-model="form.message"
+              v-model="message"
               placeholder="Your Message" 
               rows="4" 
               required
@@ -79,30 +79,96 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { router } from "@inertiajs/vue3";
+import Swal from 'sweetalert2'
 
-const form = reactive({
+
+const name = ref('');
+const email = ref('');
+const message = ref('');
+const isSubmitting = ref(false);
+
+const submitForm = async () => {
+  isSubmitting.value = true;
+  const formData = new FormData();
+  formData.append('name', name.value);
+  formData.append('email', email.value);
+  formData.append('message', message.value);
+
+
+  try {
+    await router.post('/contact/submit', formData, {
+      onSuccess: (page) => {
+        isSubmitting.value = false;
+        Swal.fire({
+          icon: 'success',
+          title: 'Message Sent',
+          text: 'Thank you for contacting us! We will get back to you soon.',
+          confirmButtonText: 'OK'
+        });
+
+        // Reset form
+        name.value = '';
+        email.value = '';
+        message.value = '';
+      },
+      onError: (error) => {
+        isSubmitting.value = false;
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'There was an error sending your message. Please try again later.',
+          confirmButtonText: 'OK'
+        });
+      }
+    });
+  }
+  catch (error) {
+    isSubmitting.value = false;
+    console.error('Error submitting form:', error);
+  }
+}
+
+/* const form = reactive({
   name: '',
   email: '',
   message: ''
-})
+}); */
 
-const isSubmitting = ref(false)
+/* const submitForm = async () => {
+  
 
-const submitForm = async () => {
-  isSubmitting.value = true
   
-  // Simulate form submission
-  await new Promise(resolve => setTimeout(resolve, 1000))
-  
-  console.log('Form submitted:', form)
-  
-  // Reset form
-  form.name = ''
-  form.email = ''
-  form.message = ''
-  
-  isSubmitting.value = false
-  
-  alert('Message sent successfully!')
-}
+
+  try {
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Message Sent',
+      text: 'Thank you for contacting us! We will get back to you soon.',
+      confirmButtonText: 'OK'
+    });
+
+    // Reset form
+    form.name = '';
+    form.email = '';
+    form.message = '';
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'There was an error sending your message. Please try again later.',
+      confirmButtonText: 'OK'
+    });
+  } finally {
+    isSubmitting.value = false;
+  }
+} */
+
+
+
+
+
 </script> 
