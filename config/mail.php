@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Mailer
@@ -124,4 +123,5 @@ return [
         ],
     ],
 
+    'contact_form_email' => env('CONTACT_FORM_EMAIL', 'default@email.com'),
 ];

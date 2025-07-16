@@ -27,20 +27,18 @@
             class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group hover:scale-105"
             style="min-width:320px;max-width:400px;width:100%"
           >
-            <div class="h-48 bg-gradient-to-br from-purple-200 to-pink-200 flex items-center justify-center text-6xl">
-              {{ book.emoji }}
-            </div>
+            <img :src="book.image" alt="Book Image" class="h-48 w-full object-cover" />
             <div class="p-6">
               <h4 class="text-xl font-semibold mb-2 text-gray-800">{{ book.title }}</h4>
               <p class="text-gray-600 mb-4">{{ book.description }}</p>
               <div class="flex justify-between items-center">
-                <span class="text-2xl font-bold text-purple-600">${{ book.price }}</span>
-                <button 
+                <span class="text-2xl font-bold text-purple-600">{{ book.price }}</span>
+                <!-- <button 
                   @click="addToCart(book)"
                   class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full hover:shadow-lg transition-all duration-300"
                 >
                   Add to Cart
-                </button>
+                </button> -->
               </div>
             </div>
           </div>
@@ -59,44 +57,24 @@ const books = ref([
     id: 1,
     title: 'Custom Shirt Printing',
     description: 'High-quality t-shirt printing for events, businesses, and personal use. Choose your design and color!',
-    price: 'From $9.99',
-    emoji: '�'
+    price: 'From 9.99',
+    image: '/images/shirt2.jpeg',
   },
   {
     id: 2,
     title: 'Children’s Coloring Books',
     description: 'Fun and educational coloring books for kids. Vibrant pages, creative themes, and bulk discounts.',
-    price: 'From $5.99',
-    emoji: '📚'
+    price: 'From 5.99',
+    image: '/images/color1.jpeg',
+   
   },
   {
     id: 3,
     title: 'Business Banners',
     description: 'Durable, eye-catching banners for promotions, events, and storefronts. Custom sizes available.',
-    price: 'From $19.99',
-    emoji: '🖼️'
+    price: 'From 19.99',
+    image: '/images/banner.jpeg',
   },
-  {
-    id: 4,
-    title: 'Personalized Mugs',
-    description: 'Print your logo, photo, or message on high-quality mugs. Perfect for gifts and branding.',
-    price: 'From $7.99',
-    emoji: '☕'
-  },
-  {
-    id: 5,
-    title: 'Stickers & Decals',
-    description: 'Custom stickers and decals for kids, businesses, and events. Vibrant colors and durable material.',
-    price: 'From $2.99',
-    emoji: '🏷️'
-  },
-  {
-    id: 6,
-    title: 'Flyers & Brochures',
-    description: 'Professional flyers and brochures for marketing and education. Fast turnaround and great prices.',
-    price: 'From $14.99',
-    emoji: '�'
-  }
 ]) 
 
 const carouselStart = ref(0)

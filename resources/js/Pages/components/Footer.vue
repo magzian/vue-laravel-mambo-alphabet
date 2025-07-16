@@ -4,7 +4,7 @@
       <div class="text-center">
         <div class="flex items-center justify-center space-x-3 mb-4">
           <span class="text-2xl">🖨️</span>
-          <h1 class="text-xl font-bold">PrintWorks</h1>
+          <h1 class="text-xl font-bold">Mambo Alphabet</h1>
         </div>
         <p class="text-gray-400 mb-6">Quality printing for shirts, books, banners, and more</p>
         <div class="flex justify-center space-x-6 mb-6">

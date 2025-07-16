@@ -21,7 +21,7 @@ class SubmitContactFormController extends Controller
 
         $formSubmission = FormSubmission::create($validated);
 
-        Mail::to('ianbenard2002@gmail.com')->queue(new ContactFormSubmissionMail($formSubmission));
+        Mail::to(env('CONTACT_FORM_EMAIL', 'default@email.com'))->queue(new ContactFormSubmissionMail($formSubmission));
 
 
     }

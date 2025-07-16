@@ -9,7 +9,7 @@
     <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <h1 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent flex items-center">
-          <span class="mr-2">🖨️</span> PrintWorks
+          <span class="mr-2">🖨️</span> Mambo Alphabet
         </h1>
       </div>
       <div class="hidden md:flex space-x-8">
